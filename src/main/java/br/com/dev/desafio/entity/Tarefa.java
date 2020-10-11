@@ -28,6 +28,9 @@ public class Tarefa {
 	@JoinColumn(name = "projeto_id")
 	@NotNull
 	private Projeto projeto;
+	
+	@Column(columnDefinition = "boolean default false")
+	private boolean status;
 
 	public Long getId() {
 		return id;
@@ -59,6 +62,14 @@ public class Tarefa {
 
 	public void setProjeto(Projeto projeto) {
 		this.projeto = projeto;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	@Override

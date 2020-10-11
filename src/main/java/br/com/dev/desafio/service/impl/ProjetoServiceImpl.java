@@ -1,5 +1,6 @@
 package br.com.dev.desafio.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +31,7 @@ public class ProjetoServiceImpl implements ProjetoService {
 		if (repository.existsByTituloContainingIgnoreCase(projeto.getTitulo()))
 			throw new CustomException("Título de projeto já utilizado.", HttpStatus.BAD_REQUEST);
 		
+		projeto.setStatus(false);
 		return repository.save(projeto);
 	}
 
@@ -38,6 +40,9 @@ public class ProjetoServiceImpl implements ProjetoService {
 		
 		if (!repository.existsById(projeto.getId()))
 			throw new CustomException("Não existe um projeto com esse ID.", HttpStatus.BAD_REQUEST);
+		if (projeto.isStatus())
+			if (tarefaRepository.existsByStatusAndProjetoId(false, projeto.getId()))
+				throw new CustomException("Não é possível entregar o projeto, pois ainda há tarefas pendentes.", HttpStatus.BAD_REQUEST);
 		
 		return repository.save(projeto);
 	}

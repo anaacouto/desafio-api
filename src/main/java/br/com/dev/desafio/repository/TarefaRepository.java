@@ -12,6 +12,8 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Long>{
 	
 	boolean existsByTituloContainingIgnoreCaseAndProjetoId(String titulo, Long id);
 	
+	boolean existsByStatusAndProjetoId(boolean status, Long id);
+	
 	boolean existsByProjetoId(Long id);
 	
 	List<Tarefa> findByProjetoId(Long id);

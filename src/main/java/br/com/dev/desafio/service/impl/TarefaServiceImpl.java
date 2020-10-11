@@ -25,6 +25,7 @@ public class TarefaServiceImpl implements TarefaService {
 		if (repository.existsByTituloContainingIgnoreCaseAndProjetoId(tarefa.getTitulo(), tarefa.getProjeto().getId()))
 			throw new CustomException("Título de tarefa já utilizado.", HttpStatus.BAD_REQUEST);
 		
+		tarefa.setStatus(false);
 		return repository.save(tarefa);
 	}
 

@@ -27,6 +27,9 @@ public class Projeto {
 	
 	@NotNull
 	private LocalDate dataPrevisaoEntrega;
+	
+	@Column(columnDefinition = "boolean default false")
+	private boolean status;
 
 	public Long getId() {
 		return id;
@@ -58,6 +61,14 @@ public class Projeto {
 
 	public void setDataPrevisaoEntrega(LocalDate dataPrevisaoEntrega) {
 		this.dataPrevisaoEntrega = dataPrevisaoEntrega;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	@Override
